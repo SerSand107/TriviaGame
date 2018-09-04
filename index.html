@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Linking CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!-- Linking Bootstap-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Linking jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <title>Back to the Fututre Trivia Game</title>
+</head>
+<body>
+    <header>
+        <h1>Back to the Fututre Trivia Game</h1>
+    </header>
+
+    <div class="container">
+
+        <div class="class text-center">
+            <button class="class btn btn-warning btn-xs theme-button"><span class="fa fa-music"></span> Play Theme</button>
+            <button class="class btn btn-primary" id="startBtn">Start Game</button>
+            <button class="btn btn-default btn-xs pause-button"><span class="fa fa-pause"></span> Pause Song</button>
+        </div>
+        
+        <div id="remainingTime"></div>
+        <div id="currentQuestion"></div>
+        <div id="question"></div>
+        <div id="options"></div>
+        <div id="response"></div>
+        <div id="rightAnswer"></div>
+        <div id="lastResponse"></div>
+        <div id="correctAnswers"></div>
+        <div id="wrongAnswers"></div>
+        <div id="unanswered"></div>
+        <div id="restartBtn"></div>
+    </div>
+
+    <!-- Linking our JavaScript file -->
+  <script type="text/javascript" src="assets/javascript/app.js"></script>
+</body>
+</html>
