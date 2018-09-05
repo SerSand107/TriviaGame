@@ -1,5 +1,5 @@
-$(document).ready(function() {
-    var questions = [{
+// $(document).ready(function() {
+    var gameQuestions = [{
         q: "Which song is playing as Marty enters the Cafe 80's in Part 2?",
         choices: ["Madonna - Like a Virgin", "Tears For Fears - Everybody Wants to Rule the World", "Michael Jackson - Beat It", "Van Halen - Jump"],
         answer: 2
@@ -41,11 +41,41 @@ $(document).ready(function() {
         answer: 1
     }];
 
+    var currentQuestion;
+    var rightAnswer;
+    var wrongAnswer;
+    var unanswered;
+    var answered;
+    var userSelect;
+    var time;
+    var seconds;
     var gameResponse = {
     right: "GREAT SCOTT!",
     wrong: "Slacker!",
     noTime: "Out of time!",
-    final: "Let's go back in time or are you chicken?"
+    final: "Times Up!"
+    }
+
+    $("#startBtn").on("click", function() {
+            $(this).hide();
+            startGame();
+        });
+
+        $("#restartBtn").on("click", function() {
+            $(this).hide();
+            startGame();
+        });
+
+        function startGame() {
+            $("#correctAnswers").empty();
+            $("#wrongAnswers").empty();
+            $("#unanswered").empty();
+            $("#lastResponse").empty();
+            currentQuestion = 0;
+            rightAnswer = 0;
+            wrongAnswer = 0;
+            unanswered = 0;
+            nextQuestion();
     }
 
     var audioElement = document.createElement("audio");
@@ -58,44 +88,91 @@ $(document).ready(function() {
         audioElement.pause();
     });
 
-    $("#startBtn").on("click", function() {
-        $(this).hide();
-        startGame();
-    });
-
-    $("#restartBtn").on("click", function() {
-        $(this).hide();
-        startGame();
-    });
-
-    function startGame() {
-        $("#correctAnswers").empty();
-        $("#wrongAnswers").empty();
-        $("#unanswered").empty();
-        $("#lastResponse").empty();
-        var currentQuestion = 0;
-        var rightAnswer = 0;
-        var wrongAnswers = 0;
-        var unanswered = 0;
-        nextQuestion();
-    }
+    
 
     function nextQuestion() {
         $("#response").empty();
         $("#rightAnswer").empty();
-        var answered = true;
+        answered = true;
 
 
-        $("#currentQuestion").html("Question" + (currentQuestion+1) + "out of" + questions.length);
-        $("#question").html(questions[currentQuestion].q);
+        $("#currentQuestion").html("Question" + (currentQuestion+1) + "out of" + gameQuestions.length);
+        $("#question").html("<h1>" + gameQuestions[currentQuestion].q + "</h1>");
         for (var i = 0; i < 4; i++);
             var choice = $("<div>");
-            choice.text(questions[currentQuestion].choices[i]);
+            choice.text(gameQuestions[currentQuestion].choices[i]);
             choice.attr({"data-index": i});
             choice.addClass("thisChoice");
             $("#options").append(choice);
     }
 
+    runTime();
+    $(".thisChoice").on("click", function() {
+        userSelect = $(this).data("index");
+        clearInterval(time);
+        answerPage();
+    });
+
+    function runTime()  {
+        seconds = 15;
+        $("#remainingTime").html("<h2>Time: " + seconds + "</h2>");
+        answered = true;
+        time = setInterval(seeRunTime, 1000);
+    }
+
+    function seeRunTime() {
+        seconds--;
+        $("#remainingTime").html("<h2>Time: " + seconds + "</h2>");
+        if (seconds < 1) {
+            clearInterval(time);
+            answered = false;
+            answerPage();
+        }
+    }
+
+    function answerPage() {
+        $("#currentQuestion").empty();
+        $(".thisChoice").empty();
+        $("#question").empty();
+
+        var correctAnswerText = gameQuestions[currentQuestion].choices[gameQuestions[currentQuestion].answer];
+        var correctAnswerIndex = gameQuestions[currentQuestion].answer;
+
+        if ((userSelect == correctAnswerIndex) && (answered == true)) {
+            rightAnswer++;
+            $("#response").html(gameResponse.right);
+        } else if ((userSelect != correctAnswerIndex) && (answered = true)) {
+            wrongAnswer++;
+            $("#response").html(gameResponse.wrong);
+            $("#rightAnswer").html("The right answer is: " + correctAnswerText);
+        } else {
+            unanswered++;
+            $("#response").html(gameResponse.noTime);
+            $("#rightAnswer").html("The right answer is: " + correctAnswerText);
+            answered = true;
+        }
+
+        if (currentQuestion == (gameQuestions.length-1)) {
+            setTimeout(tally, 5000) 
+        } else {
+            currentQuestion++;
+            setTimeout(newQuestion, 5000);
+        }	
+    }
+
+    function tally() {
+        $("#remainingTime").empty();
+        $("#response").empty();
+        $("#rightAnswer").empty();
+    
+        $("#lastResponse").html(gameResponse.final);
+        $("#correctAnswers").html("Right Answers: " + rightAnswer);
+        $("#wrongAnswers").html("Wrong Answers: " + wrongAnswer);
+        $("#unanswered").html("Unanswered: " + unanswered);
+        $("#restartBtn").addClass("reset");
+        $("#restartBtn").show();
+        $("#restartBtn").html("Let's go back in time or are you chicken?");
+    }
 
 
 
@@ -103,7 +180,4 @@ $(document).ready(function() {
 
 
 
-
-
-
-});
+// });
