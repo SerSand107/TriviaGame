@@ -1,4 +1,6 @@
-// $(document).ready(function() {
+$(document).ready(function() {
+
+    // Global Variables 
     var gameQuestions = [{
         q: "Which song is playing as Marty enters the Cafe 80's in Part 2?",
         choices: ["Madonna - Like a Virgin", "Tears For Fears - Everybody Wants to Rule the World", "Michael Jackson - Beat It", "Van Halen - Jump"],
@@ -57,25 +59,25 @@
     }
 
     $("#startBtn").on("click", function() {
+        $(this).hide();
+        startGame();
+    });
+
+    $("#restartBtn").on("click", function() {
             $(this).hide();
             startGame();
-        });
+    });
 
-        $("#restartBtn").on("click", function() {
-            $(this).hide();
-            startGame();
-        });
-
-        function startGame() {
-            $("#correctAnswers").empty();
-            $("#wrongAnswers").empty();
-            $("#unanswered").empty();
-            $("#lastResponse").empty();
-            currentQuestion = 0;
-            rightAnswer = 0;
-            wrongAnswer = 0;
-            unanswered = 0;
-            nextQuestion();
+    function startGame() {
+        $("#correctAnswers").empty();
+        $("#wrongAnswers").empty();
+        $("#unanswered").empty();
+        $("#lastResponse").empty();
+        currentQuestion = 0;
+        rightAnswer = 0;
+        wrongAnswer = 0;
+        unanswered = 0;
+        nextQuestion();
     }
 
     var audioElement = document.createElement("audio");
@@ -86,32 +88,31 @@
 
     $(".pause-button").on("click", function() {
         audioElement.pause();
-    });
-
-    
+    });    
 
     function nextQuestion() {
         $("#response").empty();
         $("#rightAnswer").empty();
         answered = true;
 
-
-        $("#currentQuestion").html("Question" + (currentQuestion+1) + "out of" + gameQuestions.length);
+        $("#currentQuestion").html("Question " + (currentQuestion + 1) + " out of " + gameQuestions.length);
         $("#question").html("<h1>" + gameQuestions[currentQuestion].q + "</h1>");
-        for (var i = 0; i < 4; i++);
+        
+        for (var i = 0; i < 4; i++) {
             var choice = $("<div>");
             choice.text(gameQuestions[currentQuestion].choices[i]);
             choice.attr({"data-index": i});
             choice.addClass("thisChoice");
             $("#options").append(choice);
-    }
+        }
 
-    runTime();
-    $(".thisChoice").on("click", function() {
-        userSelect = $(this).data("index");
-        clearInterval(time);
-        answerPage();
-    });
+        runTime();
+        $(".thisChoice").on("click", function() {
+            userSelect = $(this).data("index");
+            clearInterval(time);
+            answerPage();
+        });
+    }
 
     function runTime()  {
         seconds = 15;
@@ -156,15 +157,14 @@
             setTimeout(tally, 5000) 
         } else {
             currentQuestion++;
-            setTimeout(newQuestion, 5000);
+            setTimeout(nextQuestion, 5000);
         }	
     }
-
+    // End of game score
     function tally() {
         $("#remainingTime").empty();
         $("#response").empty();
         $("#rightAnswer").empty();
-    
         $("#lastResponse").html(gameResponse.final);
         $("#correctAnswers").html("Right Answers: " + rightAnswer);
         $("#wrongAnswers").html("Wrong Answers: " + wrongAnswer);
@@ -173,11 +173,4 @@
         $("#restartBtn").show();
         $("#restartBtn").html("Let's go back in time or are you chicken?");
     }
-
-
-
-
-
-
-
-// });
+});

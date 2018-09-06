@@ -1,4 +1,95 @@
+@import url('https://fonts.googleapis.com/css?family=Lemon');
+
 body {
-    background: url("../images/back-to-the-future-wallpaper-20.jpg");
-    /* background-size: cover; */
+    background: url("../images/Back-to-the-Future-Fan-Art.jpg");
+    background-size: cover;
+}
+header {
+    padding: 20px;
+}
+
+header > h1 {
+    text-align: center;
+    font-family: 'Lemon', cursive;
+    font-size: 60px;
+    color: #1b4eda;
+}
+
+h1,  #lastResponse {
+	font-family: 'Lemon', cursive;
+}
+
+.btn-primary:hover, .reset:hover{
+	background-color: #e1f00c;
+}
+
+.thisChoice:hover{
+	background-color: #0ef1cb;
+	color: white;
+	padding: 10px;
+}
+
+.btn-primary,.reset{
+	background-color: #0611dd;
+	color: white;
+	font-family: 'Lemon', cursive;
+	font-size: 30px;
+	padding: 20px;
+	margin-top: 100px;
+}
+
+#remainingTime {
+    color: #dd8006;
+	font-family: 'Lemon', cursive;
+	font-size: 50px;
+	padding: 20px;
+	margin-top: 20px;
+}
+
+#response {
+    color: red;
+    font-family: 'Lemon', cursive;
+	font-size: 50px;
+	padding: 20px;
+	margin-top: 20px;
+}
+
+#rightAnswer {
+    color: #0640fd;
+    font-family: 'Lemon', cursive;
+	font-size: 50px;
+	padding: 20px;
+	margin-top: 20px;
+}
+
+#currentQuestion {
+    color: #09b409;
+    font-family: 'Lemon', cursive;
+	font-size: 30px;
+	padding: 20px;
+	margin-top: 20px;
+}
+
+#options {
+    color: #bb18b3;
+    font-family: 'Lemon', cursive;
+	font-size: 25px;
+	padding: 20px;
+	margin-top: 20px;
+}
+
+#question {
+    color: #caf50a;
+    font-family: 'Lemon', cursive;
+	font-size: 30px;
+	padding: 20px;
+	margin-top: 20px;
+}
+
+#correctAnswers, #wrongAnswers, #unanswered {
+    color: #25d45f;
+    font-family: 'Lemon', cursive;
+	font-size: 40px;
+	padding: 20px;
+	margin-top: 10px;
 }
