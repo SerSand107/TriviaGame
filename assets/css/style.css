@@ -15,10 +15,6 @@ header > h1 {
     color: #1b4eda;
 }
 
-h1,  #lastResponse {
-	font-family: 'Lemon', cursive;
-}
-
 .btn-primary:hover, .reset:hover{
 	background-color: #e1f00c;
 }
@@ -35,7 +31,6 @@ h1,  #lastResponse {
 	font-family: 'Lemon', cursive;
 	font-size: 30px;
 	padding: 20px;
-	margin-top: 100px;
 }
 
 #remainingTime {
@@ -55,7 +50,7 @@ h1,  #lastResponse {
 }
 
 #rightAnswer {
-    color: #0640fd;
+    color: #caf50a;
     font-family: 'Lemon', cursive;
 	font-size: 50px;
 	padding: 20px;
@@ -73,7 +68,7 @@ h1,  #lastResponse {
 #options {
     color: #bb18b3;
     font-family: 'Lemon', cursive;
-	font-size: 25px;
+	font-size: 30px;
 	padding: 20px;
 	margin-top: 20px;
 }
@@ -87,9 +82,15 @@ h1,  #lastResponse {
 }
 
 #correctAnswers, #wrongAnswers, #unanswered {
-    color: #25d45f;
+    color: #12f15c;
     font-family: 'Lemon', cursive;
 	font-size: 40px;
 	padding: 20px;
 	margin-top: 10px;
+}
+
+#lastResponse {
+	color: #dd8006;
+    font-family: 'Lemon', cursive;
+	font-size: 40px;
 }

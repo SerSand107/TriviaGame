@@ -82,19 +82,20 @@ $(document).ready(function() {
 
     var audioElement = document.createElement("audio");
     audioElement.setAttribute("src", "assets/Back To The Future (From Back To The Future Original ScoreEnd Credits).mp3");
+    // Starts theme song
     $(".theme-button").on("click", function() {
         audioElement.play();
     });
-
+    // Pauses theme song
     $(".pause-button").on("click", function() {
         audioElement.pause();
     });    
-
+    
     function nextQuestion() {
         $("#response").empty();
         $("#rightAnswer").empty();
         answered = true;
-
+        //  Starts next question and option-answers
         $("#currentQuestion").html("Question " + (currentQuestion + 1) + " out of " + gameQuestions.length);
         $("#question").html("<h1>" + gameQuestions[currentQuestion].q + "</h1>");
         
@@ -113,14 +114,14 @@ $(document).ready(function() {
             answerPage();
         });
     }
-
+    // Starts time
     function runTime()  {
         seconds = 15;
         $("#remainingTime").html("<h2>Time: " + seconds + "</h2>");
         answered = true;
         time = setInterval(seeRunTime, 1000);
     }
-
+    // Timet countdown
     function seeRunTime() {
         seconds--;
         $("#remainingTime").html("<h2>Time: " + seconds + "</h2>");
@@ -139,6 +140,7 @@ $(document).ready(function() {
         var correctAnswerText = gameQuestions[currentQuestion].choices[gameQuestions[currentQuestion].answer];
         var correctAnswerIndex = gameQuestions[currentQuestion].answer;
 
+        // Examines right, wrong and unanswered 
         if ((userSelect == correctAnswerIndex) && (answered == true)) {
             rightAnswer++;
             $("#response").html(gameResponse.right);
@@ -160,7 +162,7 @@ $(document).ready(function() {
             setTimeout(nextQuestion, 5000);
         }	
     }
-    // End of game score
+    // End of game-score
     function tally() {
         $("#remainingTime").empty();
         $("#response").empty();
